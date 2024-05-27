@@ -23,7 +23,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
             text-align: center;
-            max-width: 600px;
+            max-width: 400px;
             width: 100%;
         }
 
@@ -42,13 +42,13 @@
 
         .buttons {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 10px;
         }
 
         .btn {
             padding: 20px;
-            font-size: 1.2em;
+            font-size: 1.5em;
             border: none;
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.1);
@@ -75,44 +75,36 @@
     <div class="calculator">
         <div class="display" id="display">0</div>
         <div class="buttons">
-            <!-- Function buttons -->
-            <button class="btn" data-value="Rad">Rad</button>
-            <button class="btn" data-value="Deg">Deg</button>
-            <button class="btn" data-value="factorial">x!</button>
-            <button class="btn" data-value="(">(</button>
-            <button class="btn" data-value=")">)</button>
-            <button class="btn" data-value="AC" style="background-color: #e74c3c;">AC</button>
-
-            <button class="btn" data-value="Inv">Inv</button>
-            <button class="btn" data-value="sin">sin</button>
-            <button class="btn" data-value="ln">ln</button>
+            <!-- Number buttons -->
             <button class="btn" data-value="7">7</button>
             <button class="btn" data-value="8">8</button>
             <button class="btn" data-value="9">9</button>
             <button class="btn" data-value="/" style="background-color: #f39c12;">÷</button>
             
-            <button class="btn" data-value="π">π</button>
-            <button class="btn" data-value="cos">cos</button>
-            <button class="btn" data-value="log">log</button>
             <button class="btn" data-value="4">4</button>
             <button class="btn" data-value="5">5</button>
             <button class="btn" data-value="6">6</button>
             <button class="btn" data-value="*" style="background-color: #f39c12;">×</button>
             
-            <button class="btn" data-value="e">e</button>
-            <button class="btn" data-value="tan">tan</button>
-            <button class="btn" data-value="sqrt">√</button>
             <button class="btn" data-value="1">1</button>
             <button class="btn" data-value="2">2</button>
             <button class="btn" data-value="3">3</button>
             <button class="btn" data-value="-" style="background-color: #f39c12;">−</button>
             
-            <button class="btn" data-value="Ans">Ans</button>
-            <button class="btn" data-value="EXP">EXP</button>
-            <button class="btn" data-value="pow">xʸ</button>
             <button class="btn" data-value="0" class="span-two">0</button>
             <button class="btn" data-value=".">.</button>
             <button class="btn" data-value="+" style="background-color: #f39c12;">+</button>
+
+            <!-- Function buttons -->
+            <button class="btn" data-value="sin">sin</button>
+            <button class="btn" data-value="cos">cos</button>
+            <button class="btn" data-value="tan">tan</button>
+            <button class="btn" data-value="log">log</button>
+
+            <button class="btn" data-value="sqrt">√</button>
+            <button class="btn" data-value="pow">^</button>
+            <button class="btn" data-value="C">C</button>
+            <button class="btn" data-value="AC" style="background-color: #e74c3c;">AC</button>
             
             <button class="btn" data-value="Backspace">←</button>
             <button class="btn" data-value="=" style="background-color: #2ecc71;" class="span-two">=</button>
@@ -166,7 +158,7 @@
                         return;
                     }
 
-                    if (['+', '-', '*', '/', 'sin', 'cos', 'tan', 'log', 'sqrt', 'pow', 'ln', 'π', 'e', 'EXP', 'Inv', 'factorial'].includes(value)) {
+                    if (['+', '-', '*', '/', 'sin', 'cos', 'tan', 'log', 'sqrt', 'pow'].includes(value)) {
                         if (operator && currentInput) {
                             previousInput = calculate(previousInput, currentInput, operator).toString();
                             currentInput = '';
@@ -205,34 +197,13 @@
                         return Math.tan(a);
                     case 'log':
                         return Math.log10(a);
-                    case 'ln':
-                        return Math.log(a);
                     case 'sqrt':
                         return Math.sqrt(a);
                     case 'pow':
                         return Math.pow(a, b);
-                    case 'π':
-                        return a * Math.PI;
-                    case 'e':
-                        return Math.exp(a);
-                    case 'EXP':
-                        return a * Math.pow(10, b);
-                    case 'Inv':
-                        return 1 / a;
-                    case 'factorial':
-                        return factorial(a);
                     default:
                         return b;
                 }
-            }
-
-            function factorial(n) {
-                if (n === 0 || n === 1) return 1;
-                let result = 1;
-                for (let i = 2; i <= n; i++) {
-                    result *= i;
-                }
-                return result;
             }
         });
     </script>
